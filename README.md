@@ -210,3 +210,10 @@ PUT (oauth)
 DELETE (oauth)
 
 ---
+
+
+Wire frames of safeSRC:
+![image](https://user-images.githubusercontent.com/82437756/130298031-767b7024-4aca-42ac-84f3-6881c13f7541.png)
+
+
+---
