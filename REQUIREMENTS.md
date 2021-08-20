@@ -1,36 +1,36 @@
 # Software Requirements
 
 ## Vision
-_What is the vision of this product?_
-This product endeavors to create a database that will supply a user with resources relevant to their specific need. These resources will provide alternatives to notifying official emergency services such as the police department.
-_What pain point does this project solve?_
-This project hopes to solve any emergency need that may present itself, by providing services that aim to circumvent the need for police, thereby avoiding a potentially dangerous situation created by the culture and inefficient training of police officers.
-_Why should we care about your product?_
-The current social and political climate have created a dangerous situation for many individuals to seek help in dire situations. This includes members of marginalized communities, and those that require immediate help, but don’t wish to involve officers with guns in their struggle. As we’ve seen time and time again, delicate situations are often made worse by self-possessed individuals with a badge and a weapon.
+_What is the vision of this product?_  
+- This product endeavors to create a database that will supply a user with resources relevant to their specific need. These resources will provide alternatives to notifying official emergency services such as the police department.  
+_What pain point does this project solve?_  
+- This project hopes to solve any emergency need that may present itself, by providing services that aim to circumvent the need for police, thereby avoiding a potentially dangerous situation created by the culture and inefficient training of police officers.  
+_Why should we care about your product?_  
+- The current social and political climate have created a dangerous situation for many individuals to seek help in dire situations. This includes members of marginalized communities, and those that require immediate help, but don’t wish to involve officers with guns in their struggle. As we’ve seen time and time again, delicate situations are often made worse by self-possessed individuals with a badge and a weapon.  
 
 ## Scope (In/Out)
-
-_IN: What will your product do_
-The app will provide users with phone numbers and locations of community solutions as alternatives to calling police.
-It will provide the information for emergency hotlines, shelters, facilities and volunteer workers that can provide support depending on what is needed. Different categories will be displayed that the user can select.
-These categories will include support for those that struggle with drug addiction, individuals fleeing from domestic abuse, environments that harm children, and options for nero-atypicals to receive community aid.
-_OUT: What will your project not do_
-This project will not physically connect users to the services they are looking for. Users will have to make the calls themselves.
-There also will not be a Twitter bot that scrapes information on lesser-known community projects.
-
-## MVP
-_(courtesy of Ben Francka)_
-Create a functional API that stores information for emergency services/resources as an alternative to calling the police.  
-Create Tables, Models, Controllers for one or two cities and relevant organization data by category, with the infrastructure present to expand nationwide. 
-Implement and employ Cheerio to web-scrape sites for table data, and hard code where necessary.
-Create an Authorization layer for agencies or users to update data from the front end (encourage community based database management).
-Implement routes that allow for searching by city/location
-
+  
+_IN: What will your product do_  
+- The app will provide users with phone numbers and locations of community solutions as alternatives to calling police.  
+- It will provide the information for emergency hotlines, shelters, facilities and volunteer workers that can provide support depending on what is needed. Different categories will be displayed that the user can select.  
+- These categories will include support for those that struggle with drug addiction, individuals fleeing from domestic abuse, environments that harm children, and options for nero-atypicals to receive community aid.  
+_OUT: What will your project not do_  
+- This project will not physically connect users to the services they are looking for. Users will have to make the calls themselves.  
+- There also will not be a Twitter bot that scrapes information on lesser-known community projects.
+  
+## MVP  
+_(courtesy of Ben Francka)_  
+- Create a functional API that stores information for emergency services/resources as an alternative to calling the police.  
+- Create Tables, Models, Controllers for one or two cities and relevant organization data by category, with the infrastructure present to expand nationwide.  
+- Implement and employ Cheerio to web-scrape sites for table data, and hard code where necessary.  
+- Create an Authorization layer for agencies or users to update data from the front end (encourage community based database management).  
+- Implement routes that allow for searching by city/location  
+  
 ## Stretch
-Expanded database that provides information on services available nationwide.
-Geo location feature that searches by a user’s current position
-Automated emails to self-inducted organizations to update their information.
-
+- Expanded database that provides information on services available nationwide.  
+- Geo location feature that searches by a user’s current position  
+- Automated emails to self-inducted organizations to update their information.  
+  
 
 # Functional Requirements
 
