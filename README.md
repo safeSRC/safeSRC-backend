@@ -18,6 +18,10 @@ Community safety app that provides resources for 24/7 emergency services as a sa
 
 ---
 
+Project management board: https://miro.com/app/board/o9J_l1mE2t4=/
+
+---
+
 # DB ERD
 
 ## Tables
