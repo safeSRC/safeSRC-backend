@@ -14,6 +14,7 @@ _IN: What will your product do_
 - The app will provide users with phone numbers and locations of community solutions as alternatives to calling police.  
 - It will provide the information for emergency hotlines, shelters, facilities and volunteer workers that can provide support depending on what is needed. Different categories will be displayed that the user can select.  
 - These categories will include support for those that struggle with drug addiction, individuals fleeing from domestic abuse, environments that harm children, and options for nero-atypicals to receive community aid.  
+  
 _OUT: What will your project not do_  
 - This project will not physically connect users to the services they are looking for. Users will have to make the calls themselves.  
 - There also will not be a Twitter bot that scrapes information on lesser-known community projects.
