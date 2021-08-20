@@ -24,7 +24,7 @@ Community safety app that provides resources for 24/7 emergency services as a sa
 
 ### organizations
 The organizations table exists to keep track of organizations that have been added to the database by service providers, to avoid duplicate entries and employ authorization.
-	#### Columns
+#### Columns
 id (PK)
 state_id (FK references states:id)
 city_id (FK references cities:id)
@@ -50,7 +50,7 @@ GET
 GET: id
 ### cities
 The cities table will provide the ability to search for individual services by city, and provides the key to joining the majority of the services tables.
-	#### Columns
+#### Columns
 id (PK)
 state_id (FK references states: id)
 city_name (TEXT NOT NULL)
@@ -70,7 +70,7 @@ GET
 GET: id
 ### housing_services
 The housing_services table stores organizations that provide said service.
-	#### Columns
+#### Columns
 id (PK)
 city_id (FK references cities: id)
 organization_id (FK references organizations: id)
@@ -88,7 +88,7 @@ DELETE (oauth)
 
 ### crime_services
 The crime_services table stores organizations that provide said service.
-	#### Columns
+#### Columns
 id (PK)
 city_id (FK references cities: id)
 organization_id (FK references organizations: id)
@@ -99,7 +99,7 @@ phone_number (TEXT NOT NULL)
 
 ### lgbtq_services
 The lgbtq_services table stores organizations that provide said service.
-	#### Columns
+#### Columns
 id (PK)
 city_id (FK references cities: id)
 organization_id (FK references organizations: id)
@@ -117,7 +117,7 @@ DELETE (oauth)
 
 ### mental_health_services
 The mental_health_services table stores organizations that provide said service.
-	#### Columns
+#### Columns
 id (PK)
 city_id (FK references cities: id)
 organization_id (FK references organizations: id)
@@ -135,7 +135,7 @@ DELETE (oauth)
 
 ### substance_abuse_services
 The substance_abuse_services table stores organizations that provide said service.
-	#### Columns
+#### Columns
 id (PK)
 city_id (FK references cities: id)
 organization_id (FK references organizations: id)
@@ -153,7 +153,7 @@ DELETE (oauth)
 
 ### sexual_assault_services
 The sexual_assault_services table stores organizations that provide said service.
-	#### Columns
+#### Columns
 id (PK)
 city_id (FK references cities: id)
 organization_id (FK references organizations: id)
@@ -171,7 +171,7 @@ DELETE (oauth)
 
 ### elderly_assistance_services
 The elderly_assistance_services table stores organizations that provide said service.
-	#### Columns
+#### Columns
 id (PK)
 city_id (FK references cities: id)
 organization_id (FK references organizations: id)
@@ -189,7 +189,7 @@ DELETE (oauth)
 
 ### domestic_violence_services
 The domestic_violence_services table stores organizations that provide said service.
-	#### Columns
+#### Columns
 id (PK)
 city_id (FK references cities: id)
 organization_id (FK references organizations: id)
