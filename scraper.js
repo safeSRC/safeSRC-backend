@@ -20,6 +20,8 @@ export function scrapeData(URL) {
       return description.children[0].data;
     });
       
+      console.log(mappedDescriptions, 'mapped desc');
+      
     const websites = $('.entry-content > ul > li > ul > li > a').toArray();
       
     const mappedWebsites = websites.map(website => {
@@ -41,7 +43,7 @@ export function scrapeData(URL) {
       return result;
     });
       
-    console.log(data, 'this is the data');
+    
   });
 }
 scrapeData(URL);
