@@ -32,7 +32,16 @@ export function scrapeData(URL) {
       return phoneNumber.children[0].data;
     });
     
-
+    const data = mappedServiceNames.map((name, index) => {
+      const result = {};
+      result.name = name;
+      result.description = mappedDescriptions[index];
+      result.website = mappedWebsites[index];
+      result.number = mappedNumbers[index];
+      return result;
+    });
+      
+    console.log(data, 'this is the data');
   });
 }
 scrapeData(URL);
