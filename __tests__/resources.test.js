@@ -23,7 +23,7 @@ describe('demo CRUD routes', () => {
       email: '',
       website: 'https://www.tubman.org/',
       category_id: 1,
-      tags: ['General', 'butts', 'wet'],
+      tags: ['General', 'butts', 'butter'],
     };
     const res = await request(app)
       .post('/api/v1/resources')
