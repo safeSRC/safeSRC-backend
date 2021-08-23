@@ -6,6 +6,7 @@ import City from '../lib/Model/City.js';
 import State from '../lib/Model/State.js';
 import Category from '../lib/Model/Category.js';
 // import Resource from '../lib/models/Resource.js';
+// I hate everything
 
 describe('demo CRUD routes', () => {
   beforeAll(() => {
