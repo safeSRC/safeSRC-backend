@@ -1,8 +1,10 @@
 import request from 'request';
 import cheerio from 'cheerio';
-const URL = 'https://dontcallthepolice.com/portland/';
 
-export function scrapeData(URL) {
+const URL = 'https://dontcallthepolice.com/';
+
+
+export function scrapeDontCallThePolice(URL) {
   request(URL, async (err, response, body) => {
     if (err) console.error(err);
     
@@ -20,8 +22,6 @@ export function scrapeData(URL) {
       return description.children[0].data;
     });
       
-      console.log(mappedDescriptions, 'mapped desc');
-      
     const websites = $('.entry-content > ul > li > ul > li > a').toArray();
       
     const mappedWebsites = websites.map(website => {
@@ -37,13 +37,16 @@ export function scrapeData(URL) {
     const data = mappedServiceNames.map((name, index) => {
       const result = {};
       result.name = name;
-      result.description = mappedDescriptions[index];
-      result.website = mappedWebsites[index];
-      result.number = mappedNumbers[index];
+      result.description = mappedDescriptions[index] ?? 'Description Unavailable';
+      result.website = mappedWebsites[index] ?? 'Website Unavailable';
+      result.number = mappedNumbers[index] ?? 'Phone Number Unavailable';
       return result;
     });
       
-    
+    console.log(data); 
   });
 }
-scrapeData(URL);
+
+
+scrapeDontCallThePolice(`${URL}portland`);
+
