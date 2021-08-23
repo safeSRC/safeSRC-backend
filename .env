@@ -1,0 +1,1 @@
+DATABASE_URL=postgres://teenwoof:Wheepup!3@localhost:5432/postgres
