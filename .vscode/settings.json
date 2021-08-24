@@ -1,24 +1,3 @@
 {
-    "sqltools.connections": [
-        {
-            "previewLimit": 50,
-            "server": "dvdrental.csqshthfvvnr.us-west-2.rds.amazonaws.com",
-            "port": 5432,
-            "driver": "PostgreSQL",
-            "name": "DVD Rentals",
-            "database": "dvdrental",
-            "username": "student",
-            "password": "alchemy"
-        },
-        {
-            "previewLimit": 50,
-            "server": "ec2-44-195-201-3.compute-1.amazonaws.com",
-            "port": 5432,
-            "driver": "PostgreSQL",
-            "database": "dasb534jq3vom9",
-            "username": "akwpyloqvydqyu",
-            "password": "2f23468a7e8d9ec2b6b0ad1bdfd6e759f1343cb1d567e79ac6844daf551201a8",
-            "name": "safeSRC"
-        }
-    ]
+      "git.ignoreLimitWarning": true
 }

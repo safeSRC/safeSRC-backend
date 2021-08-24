@@ -1,10 +1,8 @@
 import request from 'request';
 import cheerio from 'cheerio';
+const URL = 'https://dontcallthepolice.com/portland/';
 
-const URL = 'https://dontcallthepolice.com/';
-
-
-export function scrapeDontCallThePolice(URL) {
+export function scrapeData(URL) {
   request(URL, async (err, response, body) => {
     if (err) console.error(err);
     
@@ -22,6 +20,8 @@ export function scrapeDontCallThePolice(URL) {
       return description.children[0].data;
     });
       
+      console.log(mappedDescriptions, 'mapped desc');
+      
     const websites = $('.entry-content > ul > li > ul > li > a').toArray();
       
     const mappedWebsites = websites.map(website => {
@@ -37,24 +37,13 @@ export function scrapeDontCallThePolice(URL) {
     const data = mappedServiceNames.map((name, index) => {
       const result = {};
       result.name = name;
-      result.description = mappedDescriptions[index] ?? 'Description Unavailable';
-      result.website = mappedWebsites[index] ?? 'Website Unavailable';
-      result.number = mappedNumbers[index] ?? 'Phone Number Unavailable';
+      result.description = mappedDescriptions[index];
+      result.website = mappedWebsites[index];
+      result.number = mappedNumbers[index];
       return result;
     });
       
-    console.log(data); 
+    
   });
 }
-
-
-scrapeDontCallThePolice(`${URL}portland`);
-//scrapeDontCallThePolice(`${URL}san-jose-ca`);
-//scrapeDontCallThePolice(`${URL}kalamazoo-mi`);
-//scrapeDontCallThePolice(`${URL}riverside-ca`);
-//scrapeDontCallThePolice(`${URL}morongo-basin-ca`);
-//scrapeDontCallThePolice(`${URL}charleston-sc`);
-//scrapeDontCallThePolice(`${URL}charlottesville`);
-//scrapeDontCallThePolice(`${URL}wilmington-de`);
-
-
+scrapeData(URL);
