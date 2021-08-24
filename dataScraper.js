@@ -51,6 +51,7 @@ export function scrapeData(URL) {
     
     const resources = mappedServiceNames.map((name, index) => {
       const result = {};
+      result.cityName = cityName;
       result.srcName = name;
       result.description = mappedDescriptions[index] ?? 'Description Unavailable';
       result.info = [
@@ -66,7 +67,7 @@ export function scrapeData(URL) {
       cityName
     };
       
-    console.log(cities); 
+    console.log(resources); 
   });
 }
 
@@ -81,7 +82,7 @@ const cityArray = [
   'wilmington-de',
   'syracuse-ny',
   'rochester-ny',
-  'albany,ny',
+  'albany-ny',
   'birmingham',
   'burlington',
   'emporia-ks',
