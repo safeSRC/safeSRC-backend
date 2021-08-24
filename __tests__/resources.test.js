@@ -49,6 +49,7 @@ describe('demo CRUD routes', () => {
     await Category.insert({ category: 'Butt' });
 
     const resource = {
+      id: 1,
       src_name: 'Tubman Family Crisis and Support Services',
       src_description: 'We help people with stuff',
       st_address: '4432 Chicago Avenue South',
@@ -66,6 +67,8 @@ describe('demo CRUD routes', () => {
 
     const res = await request(app).get(`/api/v1/resources/${resource.id}`);
 
-    expect(res.body).toEqual(resource);
+    expect(res.body).toEqual({
+      ...resource,
+      id: '1' });
   });
 });
