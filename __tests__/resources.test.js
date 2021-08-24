@@ -3,10 +3,17 @@ import setup from '../data/setup.js';
 import request from 'supertest';
 import app from '../lib/app.js';
 import City from '../lib/Model/City.js';
-import State from '../lib/Model/State.js';
 import Category from '../lib/Model/Category.js';
-// import Resource from '../lib/models/Resource.js';
-// I hate everything EVEN MORE
+import Resource from '../lib/Model/Resource.js';
+
+const resource = {
+  src_name: 'Tubman Family Crisis and Support Services',
+  src_description: 'We help people with stuff',
+  info: ['612-825-0000', '612-825-3333', 'x@x.x'],
+  city_id: 1,
+  category_id: 1,
+  tags: ['General', 'health', 'butter'],
+};
 
 describe('demo CRUD routes', () => {
   beforeAll(() => {
@@ -14,61 +21,27 @@ describe('demo CRUD routes', () => {
   });
 
   it('tests create resource route', async () => {
-    await State.insert({ us_state: 'MN' });
-    await City.insert({ city: 'Minneapolis', state_id: 1 });
-    await Category.insert({ category: 'Butt' });
+    await City.insert({ city: 'Minneapolis' });
+    await Category.insert({ category: 'Health' });
 
-    const resource = {
-      src_name: 'Tubman Family Crisis and Support Services',
-      src_description: 'We help people with stuff',
-      st_address: '4432 Chicago Avenue South',
-      city_id: 1,
-      county: 'Hennepin',
-      zip: '55407',
-      state_id: 1,
-      main_number: '612-825-0000',
-      alt_number: '612-825-3333',
-      email: '',
-      website: 'https://www.tubman.org/',
-      category_id: 1,
-      tags: ['General', 'butts', 'butter'],
-    };
-    const res = await request(app)
-      .post('/api/v1/resources')
-      .send(resource);
+    const res = await request(app).post('/api/v1/resources').send(resource);
 
     expect(res.body).toEqual({
+      id: '1',
       ...resource,
-      id: '1'
     });
   });
 
   it('gets a resource by id via GET', async () => {
-    await State.insert({ us_state: 'MN' });
-    await City.insert({ city: 'Minneapolis', state_id: 1 });
-    await Category.insert({ category: 'Butt' });
+    await City.insert({ city: 'Minneapolis' });
+    await Category.insert({ category: 'Health' });
+    const currentResrc = await Resource.insert(resource);
 
-    const resource = {
-      id: 1,
-      src_name: 'Tubman Family Crisis and Support Services',
-      src_description: 'We help people with stuff',
-      st_address: '4432 Chicago Avenue South',
-      city_id: 1,
-      county: 'Hennepin',
-      zip: '55407',
-      state_id: 1,
-      main_number: '612-825-0000',
-      alt_number: '612-825-3333',
-      email: '',
-      website: 'https://www.tubman.org/',
-      category_id: 1,
-      tags: ['General', 'butts', 'butter'],
-    };
-
-    const res = await request(app).get(`/api/v1/resources/${resource.id}`);
+    const res = await request(app).get(`/api/v1/resources/${currentResrc.id}`);
 
     expect(res.body).toEqual({
-      ...resource,
-      id: '1' });
+      id: '1',
+      ...currentResrc,
+    });
   });
 });
