@@ -5,8 +5,8 @@ import app from '../lib/app.js';
 import City from '../lib/Model/City.js';
 import State from '../lib/Model/State.js';
 import Category from '../lib/Model/Category.js';
-// import Resource from '../lib/models/Resource.js';
-// I hate everything EVEN MORE
+import Resource from '../lib/Model/Resource.js';
+
 
 describe('demo CRUD routes', () => {
   beforeAll(() => {
@@ -16,7 +16,7 @@ describe('demo CRUD routes', () => {
   it('tests create resource route', async () => {
     await State.insert({ us_state: 'MN' });
     await City.insert({ city: 'Minneapolis', state_id: 1 });
-    await Category.insert({ category: 'Butt' });
+    await Category.insert({ category: 'Health' });
 
     const resource = {
       src_name: 'Tubman Family Crisis and Support Services',
@@ -31,7 +31,7 @@ describe('demo CRUD routes', () => {
       email: '',
       website: 'https://www.tubman.org/',
       category_id: 1,
-      tags: ['General', 'butts', 'butter'],
+      tags: ['General', 'health', 'butter'],
     };
     const res = await request(app)
       .post('/api/v1/resources')
@@ -48,8 +48,8 @@ describe('demo CRUD routes', () => {
     await City.insert({ city: 'Minneapolis', state_id: 1 });
     await Category.insert({ category: 'Butt' });
 
-    const resource = {
-      id: 1,
+    const resource = await Resource.insert({
+      
       src_name: 'Tubman Family Crisis and Support Services',
       src_description: 'We help people with stuff',
       st_address: '4432 Chicago Avenue South',
@@ -62,13 +62,13 @@ describe('demo CRUD routes', () => {
       email: '',
       website: 'https://www.tubman.org/',
       category_id: 1,
-      tags: ['General', 'butts', 'butter'],
-    };
+      tags: ['General', 'health', 'butter'],
+    });
 
     const res = await request(app).get(`/api/v1/resources/${resource.id}`);
 
     expect(res.body).toEqual({
       ...resource,
-      id: '1' });
+      id: '2' });
   });
 });
