@@ -82,4 +82,17 @@ describe('demo CRUD routes', () => {
       },
     ]);
   });
+  it('updates a resource via PATCH', async () => {
+    const resrc = await Resource.insert(resource);
+
+    const res = await request(app)
+      .patch(`/api/v1/resoiurces/${resource.id}`)
+      .send({ src_description: 'this is new' });
+    
+    expect(res.body).toEqual({
+      id: 1,
+      ...resrc,
+      src_description: 'this is new'
+    });
+  });
 });
