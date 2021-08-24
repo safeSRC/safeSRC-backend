@@ -44,4 +44,49 @@ describe('demo CRUD routes', () => {
       ...currentResrc,
     });
   });
+
+  it('gets a list of resources via GET', async () => {
+    await City.insert({ city: 'Minneapolis' });
+    await Category.insert({ category: 'Health' });
+    const resrc1 = await Resource.insert(resource);
+    const resrc2 = {
+      src_name: 'Second Resource',
+      src_description: 'We do things',
+      info: ['612-000-0000', '612-000-3333', 'x@xx.x'],
+      city_id: 1,
+      category_id: 1,
+      tags: ['General', 'health', 'butter'],
+    };
+    const resrc3 = {
+      src_name: 'Boop',
+      src_description: 'You call we boop',
+      info: ['000-825-0000', '000-825-3333', 'x@x.x'],
+      city_id: 1,
+      category_id: 1,
+      tags: ['General', 'boop', 'butter'],
+    };
+
+    await request(app).post('/api/v1/resources').send(resrc1);
+    await request(app).post('/api/v1/resources').send(resrc2);
+    await request(app).post('/api/v1/resources').send(resrc3);
+
+    return request(app)
+      .get('/api/v1/resources')
+      .then((res) => {
+        expect(res.body).toEqual([
+          {
+            id: '1',
+            ...resrc1
+          },
+          {
+            id: '2',
+            ...resrc2
+          },
+          {
+            id: '3',
+            ...resrc3
+          }
+        ]);
+      });
+  });
 });
