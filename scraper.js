@@ -49,4 +49,12 @@ export function scrapeDontCallThePolice(URL) {
 
 
 scrapeDontCallThePolice(`${URL}portland`);
+//scrapeDontCallThePolice(`${URL}san-jose-ca`);
+//scrapeDontCallThePolice(`${URL}kalamazoo-mi`);
+//scrapeDontCallThePolice(`${URL}riverside-ca`);
+//scrapeDontCallThePolice(`${URL}morongo-basin-ca`);
+//scrapeDontCallThePolice(`${URL}charleston-sc`);
+//scrapeDontCallThePolice(`${URL}charlottesville`);
+//scrapeDontCallThePolice(`${URL}wilmington-de`);
+
 
