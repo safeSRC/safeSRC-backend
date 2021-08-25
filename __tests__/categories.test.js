@@ -63,12 +63,4 @@ describe('categories routes', () => {
 
     expect(res.body).toEqual({ ...category, category: 'lgtbq' });
   });
-
-  it.skip('deletes a category by id with DELETE', async () => {
-    const category = await Category.insert({ category: 'youth services' });
-
-    const res = await request(app).delete(`/api/v1/categories/${category.id}`);
-
-    expect(res.body).not.toContain(category);
-  });
 });
