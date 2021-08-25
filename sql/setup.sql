@@ -18,6 +18,6 @@ CREATE TABLE resources (
       src_description TEXT NOT NULL,
       city_id INTEGER NOT NULL REFERENCES cities(id),
       info TEXT [],
-      category_id INTEGER FOREIGN KEY REFERENCES categories(id),
+      category_id INTEGER NOT NULL REFERENCES categories(id),
       tags TEXT[]
 );
