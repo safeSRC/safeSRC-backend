@@ -66,6 +66,7 @@ export function scrapeData(URL) {
       result.src_name = name;
       result.src_description =
         mappedDescriptions[index] ?? 'Description Unavailable';
+      result.city_id = '1';
       result.info = [
         Array1[index] ?? 'info unvailable',
         Array2[index] ?? 'info unavailable',
@@ -88,7 +89,7 @@ export function scrapeData(URL) {
 
 const cityArray = [
   'portland',
-  'san-jose-ca',
+  //'san-jose-ca',
   // 'kalamazoo-mi',
   // 'riversid-ca',
   // 'morongo-basin-ca',
