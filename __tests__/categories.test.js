@@ -27,8 +27,22 @@ describe('categories routes', () => {
       category: 'lgtbq',
     });
 
-    const res = await request(app).get(`api/v1/categories/${category.id}`);
+    const res = await request(app).get(`/api/v1/categories/${category.id}`);
 
     expect(res.body).toEqual(category);
   });
+
+  it.skip('gets all categories with GET', async () => {
+    const category1 = await Category.insert({
+      category: 'housing',
+    });
+
+    const res = await request(app).get('/api/v1/categories/');
+
+    expect(res.body).toEqual(category);
+  });
+
+  
+
+
 });
