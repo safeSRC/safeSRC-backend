@@ -32,17 +32,23 @@ describe('categories routes', () => {
     expect(res.body).toEqual(category);
   });
 
-  it.skip('gets all categories with GET', async () => {
+  it('gets all categories with GET', async () => {
     const category1 = await Category.insert({
       category: 'housing',
+    });
+    const category2 = await Category.insert({
+      category: 'animal',
+    });
+    const category3 = await Category.insert({
+      category: 'substance abuse',
     });
 
     const res = await request(app).get('/api/v1/categories/');
 
-    expect(res.body).toEqual(category);
+    expect(res.body).toEqual([
+      category1,
+      category2,
+      category3
+    ]);
   });
-
-  
-
-
 });
