@@ -73,6 +73,7 @@ export function scrapeData(URL) {
         Array3[index] ?? 'info unavailable',
         Array4[index] ?? 'info unavailable',
       ];
+      result.category_id = '1';
       result.tags = [];
       return result;
     });
