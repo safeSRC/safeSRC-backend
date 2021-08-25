@@ -51,4 +51,12 @@ describe('demo routes', () => {
       }
     ]);
   });
+  it('gets a city by id via GET', async () => {
+    const city1 = { city: 'Portland' };
+    const currentCity = await City.insert(city1);
+
+    const res = await request(app).get(`/api/v1/cities/${currentCity.id}`);
+
+    expect(res.body).toEqual(currentCity);
+  });
 });
