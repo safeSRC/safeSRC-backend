@@ -61,34 +61,38 @@ describe('demo CRUD routes', () => {
   });
 
   it('gets a list of resources via GET', async () => {
-    await request(app).post('/api/v1/resources').send(resource);
-    await request(app).post('/api/v1/resources').send(resource2);
-    await request(app).post('/api/v1/resources').send(resource3);
+
+    await Resource.insert(resource);
+    await Resource.insert(resource2);
+    await Resource.insert(resource3);
+
 
     const res = await request(app).get('/api/v1/resources');
-    expect(res.body).toEqual([
+    console.log('responses-------------------------------', res.body);
+    expect(res.body).toEqual(expect.arrayContaining([
       {
+
         id: '1',
         ...resource,
       },
       {
-        id: '1',
+        id: '2',
         ...resource2,
       },
       {
-        id: '1',
+        id: '3',
         ...resource3,
       },
-    ]);
+    ]));
   });
-  it.skip('updates a resource via PUT', async () => {
+  it('updates a resource via PUT', async () => {
     const resrc = await Resource.insert(resource);
 
     const res = await request(app)
       .put(`/api/v1/resources/${resrc.id}`)
       .send({ src_description: 'this is new' });
     
-    expect(res.body).toEqual({
+    expect(res.body).toEqual({ 
       id: 1,
       ...resrc,
       src_description: 'this is new'
