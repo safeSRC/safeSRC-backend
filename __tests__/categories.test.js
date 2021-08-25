@@ -2,6 +2,7 @@ import pool from '../lib/utils/pool.js';
 import setup from '../data/setup.js';
 import request from 'supertest';
 import app from '../lib/app.js';
+import Category from '../lib/Model/Category.js';
 
 describe('categories routes', () => {
   beforeEach(() => {
@@ -17,9 +18,17 @@ describe('categories routes', () => {
 
     expect(res.body).toEqual({
       id: '1',
-      ...category
+      ...category,
     });
   });
 
+  it('gets a category by id with GET', async () => {
+    const category = await Category.insert({
+      category: 'lgtbq',
+    });
 
+    const res = await request(app).get(`api/v1/categories/${category.id}`);
+
+    expect(res.body).toEqual(category);
+  });
 });
