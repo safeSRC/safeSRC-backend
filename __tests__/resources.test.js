@@ -81,14 +81,14 @@ describe('demo CRUD routes', () => {
       },
     ]);
   });
-  it.skip('updates a resource via PUT', async () => {
+  it('updates a resource via PUT', async () => {
     const resrc = await Resource.insert(resource);
 
     const res = await request(app)
       .put(`/api/v1/resources/${resrc.id}`)
       .send({ src_description: 'this is new' });
     
-    expect(res.body).toEqual({
+    expect(res.body).toEqual({ 
       id: 1,
       ...resrc,
       src_description: 'this is new'
