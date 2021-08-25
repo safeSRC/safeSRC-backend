@@ -67,7 +67,7 @@ export function scrapeData(URL) {
       cityName
     };
       
-    console.log(resources); 
+    console.log(resources, cities); 
   });
 }
 
