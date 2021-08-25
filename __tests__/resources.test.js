@@ -98,4 +98,15 @@ describe('demo CRUD routes', () => {
       src_description: 'this is new'
     });
   });
+
+  it('deletes an existing resource by id via DELETE', async () => {
+    const resrc = await Resource.insert(resource);
+
+    const res = await request(app)
+      .delete(`/api/v1/resources/${resrc.id}`);
+
+    expect(res.body).toEqual({ 
+      message: `${resrc.src_name} has been deleted!`
+    });
+  });
 });
