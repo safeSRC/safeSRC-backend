@@ -4,7 +4,6 @@ import request from 'supertest';
 import app from '../lib/app.js';
 import City from '../lib/Model/City.js';
 
-
 describe('demo routes', () => {
   beforeEach(() => {
     return setup(pool);
