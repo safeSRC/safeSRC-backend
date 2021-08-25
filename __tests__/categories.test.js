@@ -51,4 +51,14 @@ describe('categories routes', () => {
       category3
     ]);
   });
+
+  it('updates a category by id with PUT', async () => {
+    const category = await Category.insert({
+      category: 'lgtb',
+    });
+
+    const res = await (await request(app).put(`/api/v1/categories/${category.id}`)).send({ category: 'lgtbq' });
+
+    expect(res.body).toEqual({ category: 'lgtbq' });
+  });
 });
