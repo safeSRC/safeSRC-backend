@@ -9,6 +9,10 @@ describe('categories routes', () => {
     return setup(pool);
   });
 
+  afterAll(() => {
+    pool.end();
+  });
+
   it('inserts a category into the categories table with POST', async () => {
     const category = {
       category: 'housing',
@@ -48,19 +52,19 @@ describe('categories routes', () => {
     expect(res.body).toEqual([category1, category2, category3]);
   });
 
-  it.skip('updates a category by id with PUT', async () => {
+  it('updates a category by id with PUT', async () => {
     const category = await Category.insert({
       category: 'lgtb',
     });
 
-    const res = await (
-      await request(app).put(`/api/v1/categories/${category.id}`)
-    ).send({ category: 'lgtbq' });
+    const res = await request(app)
+      .put(`/api/v1/categories/${category.id}`)
+      .send({ category: 'lgtbq' });
 
-    expect(res.body).toEqual({ category: 'lgtbq' });
+    expect(res.body).toEqual({ ...category, category: 'lgtbq' });
   });
 
-  it('deletes a category by id with DELETE', async () => {
+  it.skip('deletes a category by id with DELETE', async () => {
     const category = await Category.insert({ category: 'youth services' });
 
     const res = await request(app).delete(`/api/v1/categories/${category.id}`);
