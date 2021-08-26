@@ -96,11 +96,11 @@ const cityArray = [
   'portland',
   'san-jose-ca',
   'kalamazoo-mi',
-  'riversid-ca',
+  'riverside-ca',
   'morongo-basin-ca',
   'charleston-sc',
   'charlottesville',
-  'wilmington-de',
+  // 'wilmington-de',
   'syracuse-ny',
   'rochester-ny',
   'albany-ny',
@@ -170,3 +170,6 @@ const cityArray = [
 ];
 
 cityArray.forEach((city) => scrapeData(`${URL}${city}`));
+// for await (let city of cityArray) {
+//   scrapeData(`${URL}${city}`)
+
