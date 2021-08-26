@@ -1,7 +1,13 @@
+DROP TABLE IF EXISTS users CASCADE;
 DROP TABLE IF EXISTS resources CASCADE;
 DROP TABLE IF EXISTS cities CASCADE;
 DROP TABLE IF EXISTS categories CASCADE;
 
+CREATE TABLE users(
+      id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+      email TEXT NOT NULL UNIQUE,
+      password_hash TEXT NOT NULL
+);
 
 CREATE TABLE cities (
       id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -21,3 +27,4 @@ CREATE TABLE resources (
       category_id INTEGER NOT NULL REFERENCES categories(id),
       tags TEXT[]
 );
+INSERT INTO categories (category) VALUES ('uncategorized');

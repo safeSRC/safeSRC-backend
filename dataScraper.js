@@ -67,7 +67,7 @@ export function scrapeData(URL) {
 
     const resources = mappedServiceNames.map((name, index) => {
       const result = {};
-      result.src_name = name;
+      result.src_name = name ?? 'No Provided Name';
       result.src_description =
         mappedDescriptions[index] ?? 'Description Unavailable';
       result.city_id = city.id;
@@ -96,11 +96,11 @@ const cityArray = [
   'portland',
   'san-jose-ca',
   'kalamazoo-mi',
-  'riversid-ca',
+  'riverside-ca',
   'morongo-basin-ca',
   'charleston-sc',
   'charlottesville',
-  'wilmington-de',
+  // 'wilmington-de',
   'syracuse-ny',
   'rochester-ny',
   'albany-ny',
@@ -170,3 +170,6 @@ const cityArray = [
 ];
 
 cityArray.forEach((city) => scrapeData(`${URL}${city}`));
+// for await (let city of cityArray) {
+//   scrapeData(`${URL}${city}`)
+
