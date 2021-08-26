@@ -72,10 +72,10 @@ export function scrapeData(URL) {
         mappedDescriptions[index] ?? 'Description Unavailable';
       result.city_id = city.id;
       result.info = [
-        Array1[index] ?? 'info unvailable',
-        Array2[index] ?? 'info unavailable',
-        Array3[index] ?? 'info unavailable',
-        Array4[index] ?? 'info unavailable',
+        Array1[index] ?? '',
+        Array2[index] ?? '',
+        Array3[index] ?? '',
+        Array4[index] ?? '',
       ];
       result.category_id = '1';
       result.tags = [];
