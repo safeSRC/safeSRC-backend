@@ -21,7 +21,7 @@ describe('categories routes', () => {
     const res = await request(app).post('/api/v1/categories').send(category);
 
     expect(res.body).toEqual({
-      id: '1',
+      id: category.id,
       ...category,
     });
   });
