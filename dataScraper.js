@@ -67,7 +67,7 @@ export function scrapeData(URL) {
 
     const resources = mappedServiceNames.map((name, index) => {
       const result = {};
-      result.src_name = name;
+      result.src_name = name ?? 'No Provided Name';
       result.src_description =
         mappedDescriptions[index] ?? 'Description Unavailable';
       result.city_id = city.id;
