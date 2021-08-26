@@ -13,7 +13,7 @@ export function scrapeData(URL) {
 
     const $ = cheerio.load(body);
 
-    const city = $('h1').text();
+    const cityName = $('h1').text();
 
     const serviceNames = $('.entry-content > ul > li:nth-child(1)').toArray();
 
@@ -61,18 +61,23 @@ export function scrapeData(URL) {
       return item.children[0].data;
     });
 
+    const city = await City.insert({ city: cityName });
+
+    
+
     const resources = mappedServiceNames.map((name, index) => {
       const result = {};
       result.src_name = name;
       result.src_description =
         mappedDescriptions[index] ?? 'Description Unavailable';
-      result.city_id = '1';
+      result.city_id = city.id;
       result.info = [
         Array1[index] ?? 'info unvailable',
         Array2[index] ?? 'info unavailable',
         Array3[index] ?? 'info unavailable',
         Array4[index] ?? 'info unavailable',
       ];
+      result.category_id = '1';
       result.tags = [];
       return result;
     });
@@ -83,85 +88,85 @@ export function scrapeData(URL) {
       })
     );
 
-    await City.insert({ city });
+    
   });
 }
 
 const cityArray = [
   'portland',
-  //'san-jose-ca',
-  // 'kalamazoo-mi',
-  // 'riversid-ca',
-  // 'morongo-basin-ca',
-  // 'charleston-sc',
-  // 'charlottesville',
-  // 'wilmington-de',
-  // 'syracuse-ny',
-  // 'rochester-ny',
-  // 'albany-ny',
-  // 'birmingham',
-  // 'burlington',
-  // 'emporia-ks',
-  // 'santa-barbara',
-  // 'livermore-ca',
-  // 'albuquerque',
-  // 'savannah',
-  // 'buffalo-ny',
-  // 'providence',
-  // 'cleveland',
-  // 'las-vegas',
-  // 'kenosha-racine',
-  // 'richmond',
-  // 'redding',
-  // 'augusta',
-  // 'honolulu',
-  // 'omaha',
-  // 'olympia',
-  // 'boise',
-  // 'newark',
-  // 'binghamton',
-  // 'duluth',
-  // 'pittsburgh',
-  // 'milwaukee',
-  // 'hattiesburg',
-  // 'lexington',
-  // 'grand-rapids',
-  // 'sacramento',
-  // 'columbia',
-  // 'oakland',
-  // 'tampa',
-  // 'jackson',
-  // 'orlando',
-  // 'eugene',
-  // 'anchorage',
-  // 'austin',
-  // 'washington-d-c',
-  // 'st-louis',
-  // 'seattle',
-  // 'san-francisco',
-  // 'san-diego',
-  // 'salt-lake-city',
-  // 'philadelphia',
-  // 'oklahoma-cty',
-  // 'new-orleans',
-  // 'nashville',
-  // 'minneapolis',
-  // 'miami',
-  // 'indianapolis',
-  // 'houston',
-  // 'detriot',
-  // 'denver',
-  // 'columbus',
-  // 'charlotte',
-  // 'boston',
-  // 'baltimore',
-  // 'atlanta',
-  // 'chicago',
-  // 'phoenix',
-  // 'new-york-city',
-  // 'louisville',
-  // 'dallas',
-  // 'los-angeles'
+  'san-jose-ca',
+  'kalamazoo-mi',
+  'riversid-ca',
+  'morongo-basin-ca',
+  'charleston-sc',
+  'charlottesville',
+  'wilmington-de',
+  'syracuse-ny',
+  'rochester-ny',
+  'albany-ny',
+  'birmingham',
+  'burlington',
+  'emporia-ks',
+  'santa-barbara',
+  'livermore-ca',
+  'albuquerque',
+  'savannah',
+  'buffalo-ny',
+  'providence',
+  'cleveland',
+  'las-vegas',
+  'kenosha-racine',
+  'richmond',
+  'redding',
+  'augusta',
+  'honolulu',
+  'omaha',
+  'olympia',
+  'boise',
+  'newark',
+  'binghamton',
+  'duluth',
+  'pittsburgh',
+  'milwaukee',
+  'hattiesburg',
+  'lexington',
+  'grand-rapids',
+  'sacramento',
+  'columbia',
+  'oakland',
+  'tampa',
+  'jackson',
+  'orlando',
+  'eugene',
+  'anchorage',
+  'austin',
+  'washington-d-c',
+  'st-louis',
+  'seattle',
+  'san-francisco',
+  'san-diego',
+  'salt-lake-city',
+  'philadelphia',
+  'oklahoma-cty',
+  'new-orleans',
+  'nashville',
+  'minneapolis',
+  'miami',
+  'indianapolis',
+  'houston',
+  'detriot',
+  'denver',
+  'columbus',
+  'charlotte',
+  'boston',
+  'baltimore',
+  'atlanta',
+  'chicago',
+  'phoenix',
+  'new-york-city',
+  'louisville',
+  'dallas',
+  'los-angeles'
 ];
 
 cityArray.forEach((city) => scrapeData(`${URL}${city}`));
