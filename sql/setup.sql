@@ -27,4 +27,5 @@ CREATE TABLE resources (
       category_id INTEGER NOT NULL REFERENCES categories(id),
       tags TEXT[]
 );
+
 INSERT INTO categories (category) VALUES ('uncategorized');

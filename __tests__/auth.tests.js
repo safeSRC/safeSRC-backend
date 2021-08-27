@@ -19,7 +19,7 @@ describe('auth routes', () => {
   });
 
   it('logs a user in with POST', async () => {
-    const res = await request(app)
+    const res = await agent
       .post('/api/v1/auth/login')
       .send({ email: 'email@email.com', password: 'password' });
 

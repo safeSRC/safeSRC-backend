@@ -19,6 +19,7 @@ describe('demo routes', () => {
       city: 'Portland',
     });
   });
+
   it('gets all cities via GET', async () => {
     const city1 = { city: 'Portland' };
     const city2 = { city: 'Minneapolis' };
@@ -50,6 +51,7 @@ describe('demo routes', () => {
       }
     ]);
   });
+  
   it('gets a city by id via GET', async () => {
     const city1 = { city: 'Portland' };
     const currentCity = await City.insert(city1);

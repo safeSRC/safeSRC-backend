@@ -14,6 +14,7 @@ const resource = {
   category_id: 1,
   tags: ['General', 'health', 'butter'],
 };
+
 const resource2 = {
   src_name: 'Second Resource',
   src_description: 'We do things',
@@ -22,6 +23,7 @@ const resource2 = {
   category_id: 1,
   tags: ['General', 'health', 'butter'],
 };
+
 const resource3 = {
   src_name: 'Boop',
   src_description: 'You call we boop',
@@ -68,10 +70,9 @@ describe('demo CRUD routes', () => {
 
 
     const res = await request(app).get('/api/v1/resources');
-    console.log('responses-------------------------------', res.body);
+
     expect(res.body).toEqual(expect.arrayContaining([
       {
-
         id: '1',
         ...resource,
       },
@@ -85,6 +86,7 @@ describe('demo CRUD routes', () => {
       },
     ]));
   });
+  
   it('updates a resource via PUT', async () => {
     const resrc = await Resource.insert(resource);
 
