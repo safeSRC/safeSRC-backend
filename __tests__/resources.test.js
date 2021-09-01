@@ -2,38 +2,38 @@ import pool from '../lib/utils/pool.js';
 import setup from '../data/setup.js';
 import request from 'supertest';
 import app from '../lib/app.js';
-import City from '../lib/Model/City.js';
-import Category from '../lib/Model/Category.js';
-import Resource from '../lib/Model/Resource.js';
+import City from '../lib/models/City.js';
+import Category from '../lib/models/Category.js';
+import Resource from '../lib/models/Resource.js';
 
-const resource = {
-  src_name: 'Tubman Family Crisis and Support Services',
-  src_description: 'We help people with stuff',
+const mockResource1 = {
+  srcName: 'Tubman Family Crisis and Support Services',
+  srcDescription: 'We help people with stuff',
   info: ['612-825-0000', '612-825-3333', 'x@x.x'],
-  city_id: 1,
-  category_id: 1,
+  cityId: 1,
+  categoryId: 1,
   tags: ['General', 'health', 'butter'],
 };
 
-const resource2 = {
-  src_name: 'Second Resource',
-  src_description: 'We do things',
+const mockResource2 = {
+  srcName: 'Second Resource',
+  srcDescription: 'We do things',
   info: ['612-000-0000', '612-000-3333', 'x@xx.x'],
-  city_id: 1,
-  category_id: 1,
+  cityId: 1,
+  categoryId: 1,
   tags: ['General', 'health', 'butter'],
 };
 
-const resource3 = {
-  src_name: 'Boop',
-  src_description: 'You call we boop',
+const mockResource3 = {
+  srcName: 'Boop',
+  srcDescription: 'You call we boop',
   info: ['000-825-0000', '000-825-3333', 'x@x.x'],
-  city_id: 1,
-  category_id: 1,
+  cityId: 1,
+  categoryId: 1,
   tags: ['General', 'boop', 'butter'],
 };
 
-describe('demo CRUD routes', () => {
+describe('resources routes', () => {
   beforeEach(() => {
     return setup(pool);
   });
@@ -43,7 +43,18 @@ describe('demo CRUD routes', () => {
   });
 
   it('tests create resource route', async () => {
-    const res = await request(app).post('/api/v1/resources').send(resource);
+    const res = await request(app).post('/api/v1/resources').send(mockResource1);
+
+    expect(res.body).toEqual({
+      id: '1',
+      ...mockResource1,
+    });
+  });
+
+  it('gets a resource by id via GET', async () => {
+    const resource = await Resource.insert(mockResource1);
+
+    const res = await request(app).get(`/api/v1/resources/${resource.id}`);
 
     expect(res.body).toEqual({
       id: '1',
@@ -51,64 +62,54 @@ describe('demo CRUD routes', () => {
     });
   });
 
-  it('gets a resource by id via GET', async () => {
-    const currentResrc = await Resource.insert(resource);
-
-    const res = await request(app).get(`/api/v1/resources/${currentResrc.id}`);
-
-    expect(res.body).toEqual({
-      id: '1',
-      ...currentResrc,
-    });
-  });
-
   it('gets a list of resources via GET', async () => {
-
-    await Resource.insert(resource);
-    await Resource.insert(resource2);
-    await Resource.insert(resource3);
-
+    await Resource.insert(mockResource1);
+    await Resource.insert(mockResource2);
+    await Resource.insert(mockResource3);
 
     const res = await request(app).get('/api/v1/resources');
 
-    expect(res.body).toEqual(expect.arrayContaining([
-      {
-        id: '1',
-        ...resource,
-      },
-      {
-        id: '2',
-        ...resource2,
-      },
-      {
-        id: '3',
-        ...resource3,
-      },
-    ]));
+    expect(res.body).toEqual(
+      expect.arrayContaining([
+        {
+          id: '1',
+          ...mockResource1,
+        },
+        {
+          id: '2',
+          ...mockResource2,
+        },
+        {
+          id: '3',
+          ...mockResource3,
+        },
+      ])
+    );
   });
-  
+
   it('updates a resource via PUT', async () => {
-    const resrc = await Resource.insert(resource);
+    const resource = await Resource.insert(mockResource1);
 
     const res = await request(app)
-      .put(`/api/v1/resources/${resrc.id}`)
-      .send({ src_description: 'this is new' });
-    
-    expect(res.body).toEqual({ 
+      .put(`/api/v1/resources/${resource.id}`)
+      .send({ srcDescription: 'this is new' });
+
+    expect(res.body).toEqual({
       id: 1,
-      ...resrc,
-      src_description: 'this is new'
+      ...resource,
+      srcDescription: 'this is new',
     });
   });
 
   it('deletes an existing resource by id via DELETE', async () => {
-    const resrc = await Resource.insert(resource);
+    const resource = await Resource.insert(mockResource1);
 
-    const res = await request(app)
-      .delete(`/api/v1/resources/${resrc.id}`);
+    const res = await request(app).delete(
+      `/api/v1/resources/${resource.id}`
+    );
 
-    expect(res.body).toEqual({ 
-      message: `${resrc.src_name} has been deleted!`
+    expect(res.body).toEqual({
+      message: `${resource.srcName} has been deleted!`,
     });
   });
 });

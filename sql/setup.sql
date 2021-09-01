@@ -11,7 +11,8 @@ CREATE TABLE users(
 
 CREATE TABLE cities (
       id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-      city TEXT NOT NULL);
+      city TEXT NOT NULL
+);
 
 CREATE TABLE categories (
       id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -22,10 +23,16 @@ CREATE TABLE resources (
       id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
       src_name TEXT NOT NULL,
       src_description TEXT NOT NULL,
-      city_id INTEGER NOT NULL REFERENCES cities(id),
+      city_id INTEGER NOT NULL,
       info TEXT [],
-      category_id INTEGER NOT NULL REFERENCES categories(id),
-      tags TEXT[]
+      category_id INTEGER NOT NULL,
+      tags TEXT [],
+      -- to make sure the relationships between tables maintain
+      -- data integrity, set the FOREIGN KEY constraint
+      -- and ensure related records get deleted if a city
+      -- or category gets deleted by using ON DELETE CASCADE
+      FOREIGN KEY(city_id) REFERENCES cities(id) ON DELETE CASCADE,
+      FOREIGN KEY(category_id) REFERENCES categories(id) ON DELETE CASCADE
 );
 
 INSERT INTO categories (category) VALUES ('uncategorized');

@@ -2,9 +2,9 @@ import pool from '../lib/utils/pool.js';
 import setup from '../data/setup.js';
 import request from 'supertest';
 import app from '../lib/app.js';
-import City from '../lib/Model/City.js';
+import City from '../lib/models/City.js';
 
-describe('demo routes', () => {
+describe('cities routes', () => {
   beforeEach(() => {
     return setup(pool);
   });
@@ -35,11 +35,11 @@ describe('demo routes', () => {
     expect(res.body).toEqual([
       {
         id: '1',
-        ...city1
+        ...city1,
       },
       {
         id: '2',
-        ...city2
+        ...city2,
       },
       {
         id: '3',
@@ -47,11 +47,11 @@ describe('demo routes', () => {
       },
       {
         id: '4',
-        ...city4
-      }
+        ...city4,
+      },
     ]);
   });
-  
+
   it('gets a city by id via GET', async () => {
     const city1 = { city: 'Portland' };
     const currentCity = await City.insert(city1);
