@@ -2,7 +2,7 @@ import pool from '../lib/utils/pool.js';
 import setup from '../data/setup.js';
 import request from 'supertest';
 import app from '../lib/app.js';
-import Category from '../lib/Model/Category.js';
+import Category from '../lib/models/Category.js';
 
 describe('categories routes', () => {
   beforeEach(() => {
@@ -13,7 +13,7 @@ describe('categories routes', () => {
     pool.end();
   });
 
-  it.skip('inserts a category into the categories table with POST', async () => {
+  it('inserts a category into the categories table with POST', async () => {
     const category = {
       category: 'housing',
     };
@@ -21,7 +21,7 @@ describe('categories routes', () => {
     const res = await request(app).post('/api/v1/categories').send(category);
 
     expect(res.body).toEqual({
-      id: category.id,
+      id: expect.any(String), // matches any id
       ...category,
     });
   });
@@ -33,10 +33,15 @@ describe('categories routes', () => {
 
     const res = await request(app).get(`/api/v1/categories/${category.id}`);
 
-    expect(res.body).toEqual(category);
+    // `{ ...category }` makes `Category` a plain, ol' Javascript object
+    expect(res.body).toEqual({ ...category });
   });
 
-  it.skip('gets all categories with GET', async () => {
+  it('gets all categories with GET', async () => {
+    // The `uncategorized` category will be in the response,
+    // so we need to get it to add to our expectation
+    const category0 = await Category.getById(1);
+
     const category1 = await Category.insert({
       category: 'housing',
     });
@@ -49,7 +54,7 @@ describe('categories routes', () => {
 
     const res = await request(app).get('/api/v1/categories/');
 
-    expect(res.body).toEqual([category1, category2, category3]);
+    expect(res.body).toEqual([category0, category1, category2, category3]);
   });
 
   it('updates a category by id with PUT', async () => {

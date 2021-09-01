@@ -25,5 +25,4 @@ describe('auth routes', () => {
 
     expect(res.body).toEqual({ id: '1', email: 'email@email.com' });
   });
-
 });
